@@ -61,12 +61,13 @@
       amazon.aws.route53:
         state: absent
         zone: "{{ domain_name }}"
-        record: "{{ domain_name }}" 
+        record: "{{ domain_name }}" # daws90s.shop
         ttl: 1
-        type: A  
+        type: A
+      loop: "{{ instances  }}"  
       when: 
-      - act == "delete"
-      - item == "frountend"
+        - action == "delete"
+        - item == "frontend"
   
     - name: delete ec2 instances
       amazon.aws.ec2_instance:
