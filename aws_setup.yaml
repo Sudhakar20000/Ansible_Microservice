@@ -18,5 +18,5 @@
       register: output
       when: act == "create"
     - name: print the output
-        debug:
-         msg: "{{ output }}"
+      debug:
+        msg: "{{ output }}"
