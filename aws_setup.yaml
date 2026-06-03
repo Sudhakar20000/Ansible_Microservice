@@ -1,0 +1,22 @@
+- name: aws_setup
+  hosts: local
+  connection: local
+  vars:
+    ami_id:
+    instance: ["mysql,mq"]
+    act: create
+  tasks:
+    - name: crate instance
+      amazon.aws.ec2_instance:
+        name: "roboshop-{{item}}"
+        type: t3.micro
+        image_id: "{{ami_id}}"
+        security_group:
+          - "roboshop-{{item}}"
+        state: present
+      loop: "{{inatance}}"
+      register: output
+      when: act == "create"
+    -name: print the output
+      debug:
+        msg: "{{output}}"
