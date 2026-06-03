@@ -14,7 +14,7 @@
         security_group:
           - "roboshop-{{item}}"
         state: present
-      loop: "{{ inatance }}"
+      loop: "{{ instance }}"
       register: output
       when: act == "create"
     - name: print the output
