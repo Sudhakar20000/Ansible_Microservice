@@ -63,8 +63,7 @@
         zone: "{{ domain_name }}"
         record: "{{ domain_name }}" 
         ttl: 1
-        type: A
-        loop: "{{ instances  }}"  
+        type: A  
       when: 
       - act == "delete"
       - item == "frountend"
