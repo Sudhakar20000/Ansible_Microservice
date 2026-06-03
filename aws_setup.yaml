@@ -33,7 +33,7 @@
       when: act == "create"
 
 
-    - name: for route53 frountend
+    - name: for route53 frontend
       amazon.aws.route53:
         state: present
         zone: "{{ domain_name }}"
@@ -43,7 +43,7 @@
         value: "{{ item.instances[0].public_ip_address }}"
       loop: "{{ ec2_output.results }}"
       when:
-        - item.item == "frountend"
+        - item.item == "frontend"
         - act == "create"
 
 
