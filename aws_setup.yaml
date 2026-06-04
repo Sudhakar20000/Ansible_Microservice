@@ -3,7 +3,7 @@
   connection: local
   vars:
     ami_id: ami-0220d79f3f480ecf5
-    instances: ["mysql","mq","frontend"]
+    instances: ["mysql","rabbitmq","redis","mongodb","catalogue","users","cart","frontend"]
     act: create
     domain_name: sudhakar.shop
   tasks:
