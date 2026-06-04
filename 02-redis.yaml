@@ -1,0 +1,27 @@
+- name: redis installation
+  hosts: redis
+  become: yes
+  tasks:
+    - name: enable the redis 7
+      dnf:
+        name: "@redis:7"
+        state: present
+    - name: install redis
+      package:
+        name: redis
+        state: present
+    - name: allow access
+      replace:
+        path: /etc/redis/redis.conf
+        regexp: '127.0.0.1 '
+        replace: '0.0.0.0' 
+    - name: disable protuction
+      lineinfile:  
+        path: /etc/redis/redis.conf
+        regexp: 'protected-mode'
+        line: 'protected-mode no'
+    - name: start the service
+      service:  
+        name: redis
+        state: started
+        enabled: yes
