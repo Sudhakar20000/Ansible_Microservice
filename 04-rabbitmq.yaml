@@ -8,11 +8,11 @@
         dest: /etc/yum.repos.d/rabbitmq.repo
     - name: install rebbitmq-server
       package:
-        name: rabbitmq-serve
+        name: rabbitmq-server
         state: present
     - name: start the service
       service:
-        name: rabbitmq-serve
+        name: rabbitmq-server
         state: started
         enabled: true
     - name: create roboshop mq user
