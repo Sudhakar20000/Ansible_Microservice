@@ -1,6 +1,6 @@
 - name: installation rabbitmq
   hosts: rabbitmq
-  become: true
+  become: yes
   tasks:
     - name: copy the repo
       copy:
