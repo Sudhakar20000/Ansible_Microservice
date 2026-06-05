@@ -1,0 +1,39 @@
+- name: create frontend
+  hosts: frontend
+  become: true
+  tasks:  
+  - name: Enable NGINX 1.24 DNF module stream
+    ansible.builtin.dnf:
+      name: "@nginx:1.24"
+      state: present
+  - name: install nginx
+    package:  
+      name: nginx
+      state: present
+      enabled: yes
+  - name: remove default web
+    file:
+      path: /usr/share/nginx/html/
+      state: absent
+  - name: download code
+    get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+      dest: /tmp/frontend.zip
+  - name: unarchive the file
+    unarchive:
+      src: /tmp/frontend.zip
+      dest: /usr/share/nginx/html 
+      remort_src: yes
+  - name: remove file
+    file: 
+      path: /etc/nginx/nginx.conf
+      state: present
+  - name: copy the file
+    file:
+      src: nginx.conf
+      dest: /etc/nginx/nginx.conf
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+      
