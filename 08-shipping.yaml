@@ -6,15 +6,13 @@
     package:
       name: maven
       state: present
-  - name: add system user
-    ansible.builtin.user:
+  - name: create roboshop system user
+    user:
       name: roboshop
-      group: roboshop
-      system: yes
-      create_home: yes
+      system: true
       home: /app
       shell: /sbin/nologin
-      state: present
+      comment: "Roboshop System user"
   - name: delete the directory
     file:
       path: /app
