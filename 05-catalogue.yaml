@@ -1,7 +1,7 @@
 - name: catalogue configuraction
   hosts: catalogue
   become: true
-  taskes:
+  taske:
   - name: Enable the Node.js 20 DNF module stream
     ansible.builtin.dnf:
       name: "@nodejs:20"
