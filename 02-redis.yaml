@@ -8,11 +8,11 @@
     package:
       name: redis
       state: present
-  - name: allow access
+  - name: allow remote connections
     replace:
       path: /etc/redis/redis.conf
-      regexp: '^bind 127.0.0.1 -::1'
-      replace: 'bind 0.0.0.0'
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
   - name: change protected mode
     lineinfile:
       path: /etc/redis/redis.conf
@@ -21,5 +21,5 @@
   - name: start and enable redis
     service:
       name: redis 
-      state: started
+      state: restarted
       enabled: yes
