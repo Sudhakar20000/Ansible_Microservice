@@ -22,7 +22,7 @@
     unarchive:
       src: /tmp/frontend.zip
       dest: /usr/share/nginx/html 
-      remort_src: yes
+      remote_src: yes
   - name: remove file
     file: 
       path: /etc/nginx/nginx.conf
