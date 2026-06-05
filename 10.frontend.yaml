@@ -10,7 +10,6 @@
     package:  
       name: nginx
       state: present
-      enabled: yes
   - name: remove default web
     file:
       path: /usr/share/nginx/html/
@@ -35,5 +34,5 @@
   - name: restart nginx
     service:
       name: nginx
-      state: restarted
-      
+      state: started
+      enabled: yes
